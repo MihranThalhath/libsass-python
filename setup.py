@@ -37,7 +37,7 @@ else:
     extra_compile_args = FLAGS_POSIX
     extra_link_args = LFLAGS_POSIX
 
-if platform.system() in {'Darwin', 'FreeBSD', 'OpenBSD'}:
+if platform.system() in {'Darwin', 'FreeBSD', 'OpenBSD', 'Linux'}:
     os.environ.setdefault('CC', 'clang')
     os.environ.setdefault('CXX', 'clang++')
     orig_customize_compiler = distutils.sysconfig.customize_compiler
@@ -116,7 +116,7 @@ else:
         if get_build_version() < 14.0:
             msvc9compiler.get_build_version = lambda: 14.0
             msvc9compiler.VERSION = 14.0
-    elif platform.system() in {'Darwin', 'FreeBSD', 'OpenBSD'}:
+    elif platform.system() in {'Darwin', 'FreeBSD', 'OpenBSD', 'Linux'}:
         # Dirty workaround to avoid link error...
         # Python distutils doesn't provide any way
         # to configure different flags for each cc and c++.
